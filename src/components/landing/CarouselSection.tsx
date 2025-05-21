@@ -95,7 +95,7 @@ export default function CarouselSection() {
             variant="outline"
             size="icon"
             onClick={prevSlide}
-            className="absolute top-1/2 left-2 transform -translate-y-1/2 rounded-full border-accent-details/50 text-accent-details hover:bg-accent-details/10"
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 rounded-full border-accent-details/50 text-accent-details hover:bg-accent-details/10 text-shadow-neon-accent-details"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-6 w-6" />
@@ -104,7 +104,7 @@ export default function CarouselSection() {
             variant="outline"
             size="icon"
             onClick={nextSlide}
-            className="absolute top-1/2 right-2 transform -translate-y-1/2 rounded-full border-accent-details/50 text-accent-details hover:bg-accent-details/10"
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 rounded-full border-accent-details/50 text-accent-details hover:bg-accent-details/10 text-shadow-neon-accent-details"
             aria-label="Next slide"
           >
             <ChevronRight className="h-6 w-6" />

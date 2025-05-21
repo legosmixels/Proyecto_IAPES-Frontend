@@ -25,8 +25,8 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="hidden md:flex justify-center items-center">
-            {/* Changed Dog icon color to accent-details */}
-            <Dog className="w-48 h-48 lg:w-64 lg:h-64 text-accent-details opacity-75" strokeWidth={1.5} />
+            {/* Changed Dog icon color to accent-details and added neon text shadow */}
+            <Dog className="w-48 h-48 lg:w-64 lg:h-64 text-accent-details opacity-75 text-shadow-neon-accent-details" strokeWidth={1.5} />
           </div>
         </div>
       </div>

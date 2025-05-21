@@ -29,8 +29,8 @@ export default function WhyThisAppSection() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 p-4 bg-background rounded-lg shadow">
-                  {/* Changed CheckCircle color to text-accent-details */}
-                  <CheckCircle className="h-6 w-6 text-accent-details flex-shrink-0 mt-1" />
+                  {/* Changed CheckCircle color to text-accent-details and added neon text shadow */}
+                  <CheckCircle className="h-6 w-6 text-accent-details flex-shrink-0 mt-1 text-shadow-neon-accent-details" />
                   <p className="text-foreground">{feature}</p>
                 </div>
               ))}

@@ -68,7 +68,7 @@ export default function Header() {
           <Link href="/login">
             <Button variant="ghost" size="icon" aria-label="Login" className="w-9 h-9">
               {/* User icon color can be text-foreground or text-accent-details */}
-              <User className="h-5 w-5 text-accent-details" /> 
+              <User className="h-5 w-5 text-accent-details text-shadow-neon-accent-details" /> 
             </Button>
           </Link>
         </div>

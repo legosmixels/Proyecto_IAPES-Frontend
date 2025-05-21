@@ -16,11 +16,11 @@ export function ThemeToggle() {
 
   if (!mounted) {
     // Render a placeholder or null until mounted to avoid hydration mismatch
-    return <Button variant="ghost" size="icon" className="w-9 h-9 text-accent-details" disabled><Sun className="h-[1.2rem] w-[1.2rem]" /></Button>;
+    return <Button variant="ghost" size="icon" className="w-9 h-9 text-accent-details text-shadow-neon-accent-details" disabled><Sun className="h-[1.2rem] w-[1.2rem]" /></Button>;
   }
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="w-9 h-9 text-accent-details hover:text-accent-details/80">
+    <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="w-9 h-9 text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details">
       {theme === 'light' ? (
         <Moon className="h-[1.2rem] w-[1.2rem] transition-all" />
       ) : (
