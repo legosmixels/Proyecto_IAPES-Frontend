@@ -15,7 +15,8 @@ export default function WhyThisAppSection() {
   return (
     <section className="py-12 md:py-16 bg-secondary/50">
       <div className="container mx-auto px-4">
-        <Card className="shadow-xl">
+        {/* Added border-accent-details */}
+        <Card className="shadow-xl border border-accent-details/30 hover:border-accent-details/60 transition-colors duration-300">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold text-primary">Why Choose IAPES Prep?</CardTitle>
           </CardHeader>
@@ -28,7 +29,8 @@ export default function WhyThisAppSection() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 p-4 bg-background rounded-lg shadow">
-                  <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                  {/* Changed CheckCircle color to text-accent-details */}
+                  <CheckCircle className="h-6 w-6 text-accent-details flex-shrink-0 mt-1" />
                   <p className="text-foreground">{feature}</p>
                 </div>
               ))}

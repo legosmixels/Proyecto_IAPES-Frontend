@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-primary">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-primary text-shadow-neon-primary">
               Unlock Your ICFES Potential
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8">
@@ -25,7 +25,8 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="hidden md:flex justify-center items-center">
-            <Dog className="w-48 h-48 lg:w-64 lg:h-64 text-primary opacity-75" strokeWidth={1.5} />
+            {/* Changed Dog icon color to accent-details */}
+            <Dog className="w-48 h-48 lg:w-64 lg:h-64 text-accent-details opacity-75" strokeWidth={1.5} />
           </div>
         </div>
       </div>

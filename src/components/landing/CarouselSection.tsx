@@ -95,7 +95,7 @@ export default function CarouselSection() {
             variant="outline"
             size="icon"
             onClick={prevSlide}
-            className="absolute top-1/2 left-2 transform -translate-y-1/2 rounded-full"
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 rounded-full border-accent-details/50 text-accent-details hover:bg-accent-details/10"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-6 w-6" />
@@ -104,7 +104,7 @@ export default function CarouselSection() {
             variant="outline"
             size="icon"
             onClick={nextSlide}
-            className="absolute top-1/2 right-2 transform -translate-y-1/2 rounded-full"
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 rounded-full border-accent-details/50 text-accent-details hover:bg-accent-details/10"
             aria-label="Next slide"
           >
             <ChevronRight className="h-6 w-6" />
@@ -115,7 +115,8 @@ export default function CarouselSection() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-primary' : 'bg-muted'}`}
+                /* Changed inactive dot color */
+                className={`w-3 h-3 rounded-full transition-colors ${currentIndex === index ? 'bg-primary shadow-neon-primary' : 'bg-accent-details/30 hover:bg-accent-details/50'}`}
               />
             ))}
           </div>
