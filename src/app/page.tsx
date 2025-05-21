@@ -3,7 +3,6 @@ import HeroSection from '@/components/landing/HeroSection';
 import CarouselSection from '@/components/landing/CarouselSection';
 import WhyThisAppSection from '@/components/landing/WhyThisAppSection';
 import TestimonialsSection from '@/components/landing/TestimonialsSection';
-import FeedbackSection from '@/components/landing/FeedbackSection';
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <CarouselSection />
       <WhyThisAppSection />
       <TestimonialsSection />
-      <FeedbackSection />
       {/* A simple footer */}
       <footer className="py-8 bg-muted text-muted-foreground text-center">
         <div className="container mx-auto px-4">
