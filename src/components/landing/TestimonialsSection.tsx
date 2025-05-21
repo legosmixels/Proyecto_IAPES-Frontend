@@ -56,7 +56,7 @@ export default function TestimonialsSection() {
     <section className="py-12 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-10">What Our Users Say</h2>
-        <div className="flex overflow-x-auto space-x-6 pb-4 -mx-4 px-4">
+        <div className="flex overflow-x-auto space-x-6 pb-4 -mx-4 px-4 no-scrollbar">
           {testimonials.map((testimonial, index) => (
             <Card key={index} className="min-w-[300px] md:min-w-[350px] flex-shrink-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <CardHeader>

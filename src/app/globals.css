@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 239 47% 52%; /* #5053B9 */
+    --primary: 217 97% 52%; /* #0E71FB */
     --primary-foreground: 0 0% 100%; /* White */
 
     --secondary: 240 4.8% 95.9%;
@@ -22,7 +23,7 @@
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 239 47% 52%; /* Using primary as accent */
+    --accent: 217 97% 52%; /* Using primary as accent */
     --accent-foreground: 0 0% 100%; /* White */
 
     --destructive: 0 84.2% 60.2%;
@@ -30,7 +31,7 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 239 47% 55%; /* Slightly lighter primary for ring */
+    --ring: 217 97% 55%; /* Slightly lighter primary for ring */
 
     --radius: 0.5rem;
 
@@ -51,7 +52,7 @@
     --popover: 227 38% 14%; /* #161c32 */
     --popover-foreground: 0 0% 98%;
 
-    --primary: 239 47% 52%; /* #5053B9 */
+    --primary: 217 97% 52%; /* #0E71FB */
     --primary-foreground: 0 0% 100%; /* White */
 
     --secondary: 227 38% 14%; /* #161c32 */
@@ -60,7 +61,7 @@
     --muted: 227 38% 16%; /* Slightly lighter than secondary for muted */
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 239 47% 52%; /* Using primary as accent */
+    --accent: 217 97% 52%; /* Using primary as accent */
     --accent-foreground: 0 0% 100%; /* White */
 
     --destructive: 0 62.8% 30.6%;
@@ -68,7 +69,7 @@
 
     --border: 227 38% 20%; /* Slightly lighter than card for borders */
     --input: 227 38% 20%;
-    --ring: 239 47% 55%; /* Slightly lighter primary for ring */
+    --ring: 217 97% 55%; /* Slightly lighter primary for ring */
     
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -85,5 +86,15 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
