@@ -86,7 +86,7 @@ export default function LoginPage() {
                 <Checkbox id="remember-me" />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
               </div>
-              <div className="text-right"> {/* Align link to the right, on a new line */}
+              <div> {/* Removed text-right to align left */}
                 <Link href="#" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
                   ¿Olvidaste tu contraseña? Restablecer
                 </Link>
