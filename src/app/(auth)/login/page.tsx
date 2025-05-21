@@ -83,10 +83,19 @@ export default function LoginPage() {
             {/* Section for "Remember me" and "Forgot password?" */}
             <div className="text-sm space-y-2">
               <div className="flex items-center space-x-2">
-                <Checkbox id="remember-me" />
+                <Checkbox
+                  id="remember-me"
+                  className="
+                    border-muted-foreground data-[state=checked]:border-accent-details
+                    data-[state=checked]:bg-accent-details
+                    data-[state=checked]:text-accent-details-foreground
+                    focus-visible:ring-accent-details
+                    shadow-neon-accent-details
+                  "
+                />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
               </div>
-              <div> {/* Removed text-right to align left */}
+              <div>
                 <Link href="#" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
                   ¿Olvidaste tu contraseña? Restablecer
                 </Link>
@@ -107,7 +116,10 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <Button variant="outline" className="w-full text-md py-5 border-accent-details/30 hover:border-accent-details text-accent-details hover:bg-accent-details/10 hover:text-accent-details text-shadow-neon-accent-details">
+          <Button 
+            variant="outline" 
+            className="w-full text-md py-5 border-accent-details/30 hover:border-accent-details text-accent-details hover:bg-accent-details/10 hover:text-accent-details text-shadow-neon-accent-details shadow-neon-accent-details"
+          >
             <GoogleIcon />
             Iniciar Sesión con Google
           </Button>
