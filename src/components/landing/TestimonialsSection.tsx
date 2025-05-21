@@ -1,7 +1,11 @@
 
-import { Star } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+"use client";
+
+import { useRef } from 'react'; // Import useRef
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react'; // Import Chevron icons
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button'; // Import Button
 
 const testimonials = [
   {
@@ -52,32 +56,74 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 export default function TestimonialsSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const SCROLL_AMOUNT = 350; // Approximate width of a card + spacing
+
+  const handleScrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' });
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-12 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-10 text-primary text-shadow-neon-primary">What Our Users Say</h2>
-        <div className="flex overflow-x-auto space-x-6 pb-4 -mx-4 px-4 no-scrollbar">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="min-w-[300px] md:min-w-[350px] flex-shrink-0 shadow-lg hover:shadow-xl hover:border-primary hover:shadow-neon-primary transition-all duration-300 border border-transparent">
-              <CardHeader>
-                <div className="flex items-center space-x-3">
-                  <Avatar>
-                    <AvatarImage src={testimonial.avatarSrc} alt={testimonial.name} data-ai-hint={testimonial.aiHint} />
-                    <AvatarFallback>{testimonial.avatarFallback}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                    <StarRating rating={testimonial.rating} />
+        <div className="relative">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleScrollLeft}
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 rounded-full border-primary/50 text-primary hover:bg-primary/10 text-shadow-neon-primary disabled:opacity-50"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </Button>
+          <div 
+            ref={scrollContainerRef} 
+            className="flex overflow-x-auto space-x-6 pb-4 -mx-4 px-4 no-scrollbar"
+          >
+            {testimonials.map((testimonial, index) => (
+              <Card 
+                key={index} 
+                className="min-w-[300px] md:min-w-[350px] flex-shrink-0 shadow-lg hover:shadow-xl hover:border-primary hover:shadow-neon-primary transition-all duration-300 border border-transparent"
+              >
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <Avatar>
+                      <AvatarImage src={testimonial.avatarSrc} alt={testimonial.name} data-ai-hint={testimonial.aiHint} />
+                      <AvatarFallback>{testimonial.avatarFallback}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                      <StarRating rating={testimonial.rating} />
+                    </div>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground italic">"{testimonial.comment}"</p>
-              </CardContent>
-            </Card>
-          ))}
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground italic">"{testimonial.comment}"</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleScrollRight}
+            className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 rounded-full border-primary/50 text-primary hover:bg-primary/10 text-shadow-neon-primary disabled:opacity-50"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </Button>
         </div>
       </div>
     </section>
   );
 }
+
