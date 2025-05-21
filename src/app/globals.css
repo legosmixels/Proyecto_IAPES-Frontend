@@ -106,19 +106,19 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
-  /* Subtle neon effect */
+  /* Subtle neon effect for primary */
   .shadow-neon-primary {
-    box-shadow: 0 0 4px hsl(var(--primary) / 0.6), 0 0 7px hsl(var(--primary) / 0.2);
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.7), 0 0 8px hsl(var(--primary) / 0.3); /* Enhanced */
   }
   .text-shadow-neon-primary {
-    text-shadow: 0 0 5px hsl(var(--primary) / 0.4);
+    text-shadow: 0 0 7px hsl(var(--primary) / 0.5); /* Enhanced */
   }
 
-  /* More notorious neon effect for accent-details */
+  /* More notorious neon effect for accent-details (purple) */
   .shadow-neon-accent-details {
-    box-shadow: 0 0 6px hsl(var(--accent-details) / 0.7), 0 0 10px hsl(var(--accent-details) / 0.3);
+    box-shadow: 0 0 8px hsl(var(--accent-details) / 0.8), 0 0 12px hsl(var(--accent-details) / 0.4); /* Enhanced */
   }
   .text-shadow-neon-accent-details {
-    text-shadow: 0 0 8px hsl(var(--accent-details) / 0.6);
+    text-shadow: 0 0 10px hsl(var(--accent-details) / 0.7); /* Enhanced */
   }
 }
