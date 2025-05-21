@@ -1,11 +1,14 @@
 
+"use client"; // Required for useState
+
+import { useState } from "react"; // Import useState
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
-import { Facebook, Github, Dribbble, Circle, Eye, EyeOff } from "lucide-react"; // Added Eye, EyeOff for password visibility later if needed
+import { Facebook, Github, Dribbble, Circle, Eye, EyeOff } from "lucide-react"; 
 
 // Simple Google SVG icon
 const GoogleIcon = () => (
@@ -16,8 +19,11 @@ const GoogleIcon = () => (
 );
 
 export default function LoginPage() {
-  // Placeholder state for password visibility if you want to implement it
-  // const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-secondary/50 p-4 md:p-8">
@@ -69,7 +75,23 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Contraseña</Label>
-              <Input id="password" type="password" placeholder="Ingresa tu contraseña" required className="bg-background/70"/>
+              <div className="relative">
+                <Input 
+                  id="password" 
+                  type={showPassword ? "text" : "password"} 
+                  placeholder="Ingresa tu contraseña" 
+                  required 
+                  className="bg-background/70 pr-10" // Added pr-10 for eye icon spacing
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted-foreground hover:text-primary text-shadow-neon-primary"
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
             </div>
             
             <div className="text-sm space-y-2">
@@ -77,11 +99,11 @@ export default function LoginPage() {
                 <Checkbox
                   id="remember-me"
                   className="
-                    border-muted-foreground data-[state=checked]:border-primary
+                    border-primary data-[state=checked]:border-primary
                     data-[state=checked]:bg-primary
                     data-[state=checked]:text-primary-foreground
-                    focus-visible:ring-ring
-                    shadow-neon-primary 
+                    focus-visible:ring-primary
+                    shadow-neon-primary
                   "
                 />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
