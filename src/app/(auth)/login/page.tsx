@@ -79,15 +79,20 @@ export default function LoginPage() {
               </div>
               */}
             </div>
-            <div className="flex items-center justify-between text-sm">
+            
+            {/* Section for "Remember me" and "Forgot password?" */}
+            <div className="text-sm space-y-2">
               <div className="flex items-center space-x-2">
                 <Checkbox id="remember-me" />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
               </div>
-              <Link href="#" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
-                ¿Olvidaste tu contraseña? Restablecer
-              </Link>
+              <div className="text-right"> {/* Align link to the right, on a new line */}
+                <Link href="#" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
+                  ¿Olvidaste tu contraseña? Restablecer
+                </Link>
+              </div>
             </div>
+
             <Button type="submit" className="w-full text-lg py-6">Iniciar sesión</Button>
           </form>
 
