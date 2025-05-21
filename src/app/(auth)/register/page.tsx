@@ -10,7 +10,7 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center min-h-screen bg-secondary/50 p-4">
       <Card className="w-full max-w-sm shadow-xl">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-bold">Create an Account</CardTitle>
+          <CardTitle className="text-2xl font-bold text-primary text-shadow-neon-primary">Create an Account</CardTitle>
           <CardDescription>Join IAPES Prep and start your journey to success</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -35,7 +35,7 @@ export default function RegisterPage() {
           <Button className="w-full">Register</Button>
           <p className="text-sm text-muted-foreground text-center">
             Already have an account?{' '}
-            <Link href="/login" className="text-primary hover:underline" prefetch={false}>
+            <Link href="/login" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
               Login
             </Link>
           </p>

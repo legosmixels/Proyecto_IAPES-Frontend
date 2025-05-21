@@ -37,10 +37,6 @@ export default {
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
-  			'accent-details': { // New accent color
-  				DEFAULT: 'hsl(var(--accent-details))',
-  				foreground: 'hsl(var(--accent-details-foreground))'
-  			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'

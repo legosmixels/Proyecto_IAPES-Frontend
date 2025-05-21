@@ -29,37 +29,31 @@ export default function Header() {
                 href="/"
                 className="flex items-center space-x-2 mb-6 px-4"
               >
-                <Home className="h-6 w-6 text-primary" />
+                <Home className="h-6 w-6 text-primary text-shadow-neon-primary" />
                 <span className="font-bold text-lg">IAPES Prep</span>
               </Link>
               <nav className="flex flex-col space-y-3 px-4">
                 <Link href="/login" className="text-md py-2 hover:text-primary transition-colors">Login</Link>
                 <Link href="/register" className="text-md py-2 hover:text-primary transition-colors">Register</Link>
-                {/* Additional Mobile Nav items can go here */}
-                {/* Example: <Link href="/features" className="text-md py-2 hover:text-primary transition-colors">Features</Link> */}
               </nav>
             </SheetContent>
           </Sheet>
           
           {/* Desktop Logo & Title */}
           <Link href="/" className="hidden md:flex items-center space-x-2">
-            <Home className="h-7 w-7 text-primary" />
+            <Home className="h-7 w-7 text-primary text-shadow-neon-primary" />
             <span className="font-bold text-xl sm:inline-block">
               IAPES Prep
             </span>
           </Link>
         </div>
 
-        {/* Center Group: Mobile Logo+Title (visible only on mobile, if needed and different from drawer) */}
-        {/* This is removed as the SheetTrigger is on the left, and right icons on the right, centering title. */}
-        {/* If a centered title independent of drawer is needed on mobile, it would go here. */}
         <div className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
            <Link href="/" className="flex items-center space-x-1.5">
-            <Home className="h-5 w-5 text-primary" />
+            <Home className="h-5 w-5 text-primary text-shadow-neon-primary" />
             <span className="font-semibold text-md">IAPES Prep</span>
           </Link>
         </div>
-
 
         {/* Right Group: Action Icons (Language, Theme, User) */}
         <div className="flex items-center space-x-1 sm:space-x-2">
@@ -67,8 +61,7 @@ export default function Header() {
           <ThemeToggle />
           <Link href="/login">
             <Button variant="ghost" size="icon" aria-label="Login" className="w-9 h-9">
-              {/* User icon color can be text-foreground or text-accent-details */}
-              <User className="h-5 w-5 text-accent-details text-shadow-neon-accent-details" /> 
+              <User className="h-5 w-5 text-primary text-shadow-neon-primary" /> 
             </Button>
           </Link>
         </div>

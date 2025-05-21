@@ -55,8 +55,8 @@ export default function FeedbackForm() {
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-xl">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold flex items-center">
-          <Sparkles className="h-6 w-6 mr-2 text-primary" />
+        <CardTitle className="text-2xl font-bold flex items-center text-primary text-shadow-neon-primary">
+          <Sparkles className="h-6 w-6 mr-2 text-primary text-shadow-neon-primary" />
           Get Personalized AI Feedback
         </CardTitle>
         <CardDescription>
@@ -131,7 +131,7 @@ export default function FeedbackForm() {
           <div className="mt-8 space-y-6">
             <Card className="bg-secondary/50">
               <CardHeader>
-                <CardTitle className="text-xl text-primary">Personalized Feedback</CardTitle>
+                <CardTitle className="text-xl text-primary text-shadow-neon-primary">Personalized Feedback</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="whitespace-pre-wrap">{state.feedback}</p>
@@ -139,7 +139,7 @@ export default function FeedbackForm() {
             </Card>
             <Card className="bg-secondary/50">
               <CardHeader>
-                <CardTitle className="text-xl text-primary">Study Recommendations</CardTitle>
+                <CardTitle className="text-xl text-primary text-shadow-neon-primary">Study Recommendations</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="whitespace-pre-wrap">{state.recommendations}</p>

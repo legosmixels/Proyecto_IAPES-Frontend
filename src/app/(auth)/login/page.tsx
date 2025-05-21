@@ -36,19 +36,19 @@ export default function LoginPage() {
             </p>
           </div>
           <div className="flex space-x-4">
-            <Link href="#" aria-label="Facebook" className="text-foreground hover:text-foreground/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Facebook" className="text-foreground hover:text-foreground/80 text-shadow-neon-primary transition-colors">
               <Facebook className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="GitHub" className="text-foreground hover:text-foreground/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="GitHub" className="text-foreground hover:text-foreground/80 text-shadow-neon-primary transition-colors">
               <Github className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="Social Link 1" className="text-foreground hover:text-foreground/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Social Link 1" className="text-foreground hover:text-foreground/80 text-shadow-neon-primary transition-colors">
               <Circle className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="Dribbble" className="text-foreground hover:text-foreground/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Dribbble" className="text-foreground hover:text-foreground/80 text-shadow-neon-primary transition-colors">
               <Dribbble className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="Social Link 2" className="text-foreground hover:text-foreground/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Social Link 2" className="text-foreground hover:text-foreground/80 text-shadow-neon-primary transition-colors">
               <Circle className="h-7 w-7" />
             </Link>
           </div>
@@ -70,27 +70,18 @@ export default function LoginPage() {
             <div className="space-y-2">
               <Label htmlFor="password">Contraseña</Label>
               <Input id="password" type="password" placeholder="Ingresa tu contraseña" required className="bg-background/70"/>
-              {/* Password visibility toggle example:
-              <div className="relative">
-                <Input id="password" type={showPassword ? "text" : "password"} placeholder="Ingresa tu contraseña" required />
-                <Button type="button" variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7" onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </Button>
-              </div>
-              */}
             </div>
             
-            {/* Section for "Remember me" and "Forgot password?" */}
             <div className="text-sm space-y-2">
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="remember-me"
                   className="
-                    border-muted-foreground data-[state=checked]:border-accent-details
-                    data-[state=checked]:bg-accent-details
-                    data-[state=checked]:text-accent-details-foreground
-                    focus-visible:ring-accent-details
-                    shadow-neon-accent-details
+                    border-muted-foreground data-[state=checked]:border-primary
+                    data-[state=checked]:bg-primary
+                    data-[state=checked]:text-primary-foreground
+                    focus-visible:ring-ring
+                    shadow-neon-primary 
                   "
                 />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
@@ -118,7 +109,7 @@ export default function LoginPage() {
 
           <Button 
             variant="outline" 
-            className="w-full text-md py-5 border-accent-details/30 hover:border-accent-details text-accent-details hover:bg-accent-details/10 hover:text-accent-details text-shadow-neon-accent-details shadow-neon-accent-details"
+            className="w-full text-md py-5 border-primary/30 hover:border-primary text-primary hover:bg-primary/10 hover:text-primary text-shadow-neon-primary shadow-neon-primary"
           >
             <GoogleIcon />
             Iniciar Sesión con Google

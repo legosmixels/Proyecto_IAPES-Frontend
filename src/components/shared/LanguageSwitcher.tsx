@@ -14,7 +14,7 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="w-9 h-9 text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details">
+        <Button variant="ghost" size="icon" className="w-9 h-9 text-primary hover:text-primary/90 text-shadow-neon-primary">
           <Globe className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Change language</span>
         </Button>
