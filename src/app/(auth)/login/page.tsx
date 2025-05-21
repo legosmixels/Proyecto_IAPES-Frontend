@@ -36,19 +36,19 @@ export default function LoginPage() {
             </p>
           </div>
           <div className="flex space-x-4">
-            <Link href="#" aria-label="Facebook" className="text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Facebook" className="text-primary-foreground hover:text-primary-foreground/80 text-shadow-neon-accent-details transition-colors">
               <Facebook className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="GitHub" className="text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="GitHub" className="text-primary-foreground hover:text-primary-foreground/80 text-shadow-neon-accent-details transition-colors">
               <Github className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="Social Link 1" className="text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Social Link 1" className="text-primary-foreground hover:text-primary-foreground/80 text-shadow-neon-accent-details transition-colors">
               <Circle className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="Dribbble" className="text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Dribbble" className="text-primary-foreground hover:text-primary-foreground/80 text-shadow-neon-accent-details transition-colors">
               <Dribbble className="h-7 w-7" />
             </Link>
-            <Link href="#" aria-label="Social Link 2" className="text-accent-details hover:text-accent-details/80 text-shadow-neon-accent-details transition-colors">
+            <Link href="#" aria-label="Social Link 2" className="text-primary-foreground hover:text-primary-foreground/80 text-shadow-neon-accent-details transition-colors">
               <Circle className="h-7 w-7" />
             </Link>
           </div>
