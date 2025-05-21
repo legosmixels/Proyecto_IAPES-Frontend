@@ -57,7 +57,8 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 export default function TestimonialsSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const SCROLL_AMOUNT = 350; // Approximate width of a card + spacing
+  // Card width (280px) + space-x-6 (1.5rem = 24px) = 304px
+  const SCROLL_AMOUNT = 304; 
 
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -92,7 +93,7 @@ export default function TestimonialsSection() {
             {testimonials.map((testimonial, index) => (
               <Card 
                 key={index} 
-                className="min-w-[300px] md:min-w-[350px] flex-shrink-0 shadow-lg hover:shadow-xl hover:border-primary hover:shadow-neon-primary transition-all duration-300 border border-transparent"
+                className="min-w-[280px] flex-shrink-0 shadow-lg hover:shadow-xl hover:border-primary hover:shadow-neon-primary transition-all duration-300 border border-transparent"
               >
                 <CardHeader>
                   <div className="flex items-center space-x-3">
@@ -126,4 +127,3 @@ export default function TestimonialsSection() {
     </section>
   );
 }
-
