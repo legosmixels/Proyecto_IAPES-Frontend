@@ -96,7 +96,7 @@ export default function LoginPage() {
             
             <div className="text-sm space-y-2">
               <div className="flex items-center space-x-2">
-                <Checkbox
+ <Checkbox
                   id="remember-me"
                   className="
                     border-primary data-[state=checked]:border-primary
@@ -108,14 +108,19 @@ export default function LoginPage() {
                 />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
               </div>
-              <div>
+              <div className="text-sm text-muted-foreground text-left mt-4">
+ ¿Olvidaste tu contraseña?{' '}
                 <Link href="#" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
-                  ¿Olvidaste tu contraseña? Restablecer
+                   Restablecer
                 </Link>
               </div>
             </div>
 
-            <Button type="submit" className="w-full text-lg py-6">Iniciar sesión</Button>
+ {/* Add a line break or margin here to separate the link and button */}
+ <div className="mt-4"></div>
+
+            <Link href="/subjects">
+ <Button type="submit" className="w-full text-lg py-6">Iniciar sesión</Button></Link>
           </form>
 
           <div className="relative my-2">
