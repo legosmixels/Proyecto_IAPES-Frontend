@@ -1,7 +1,7 @@
 
 "use client"; // Required for useState
 
-import { useState } from "react"; // Import useState
+import { useState, FormEvent } from "react"; // Import useState and FormEvent
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Facebook, Github, Dribbble, Circle, Eye, EyeOff } from "lucide-react"; 
 
 // Simple Google SVG icon
+import { useRouter } from 'next/navigation';
 const GoogleIcon = () => (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2">
     <title>Google</title>
@@ -20,9 +21,36 @@ const GoogleIcon = () => (
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent default form submission
+
+    let valid = true;
+    if (!username) {
+      setUsernameError("El nombre de usuario o email es requerido.");
+      valid = false;
+    } else {
+      setUsernameError("");
+    }
+    if (!password) {
+      setPasswordError("La contraseña es requerida.");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (valid) {
+      router.push('/subjects');
+    }
   };
 
   return (
@@ -68,10 +96,25 @@ export default function LoginPage() {
             </h2>
           </div>
           
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-2">
               <Label htmlFor="username">Nombre</Label>
-              <Input id="username" type="text" placeholder="Ingresa tu nombre de usuario o email" required className="bg-background/70"/>
+              <Input
+                id="username"
+                type="text"
+                placeholder="Ingresa tu nombre de usuario o email"
+                value={username}
+                onChange={(e) => { setUsername(e.target.value); setUsernameError(''); }}
+                className={`bg-background/70 ${usernameError ? 'border-[#5053B9] focus-visible:ring-[#5053B9]' : ''}`}
+                aria-describedby="username-error"
+ autoComplete="nope" // Set autoComplete to "nope" to discourage suggestions
+ autoCapitalize="off" // Disable auto-capitalization
+ autoCorrect="off" // Disable auto-correction
+ style={{
+                  WebkitBoxShadow: '0 0 0 1000px var(--card) inset',
+                  boxShadow: '0 0 0 1000px var(--card) inset',
+                }} // Attempt to override browser autofill background
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Contraseña</Label>
@@ -80,9 +123,18 @@ export default function LoginPage() {
                   id="password" 
                   type={showPassword ? "text" : "password"} 
                   placeholder="Ingresa tu contraseña" 
-                  required 
-                  className="bg-background/70 pr-10" // Added pr-10 for eye icon spacing
+                  className={`bg-background/70 pr-10 ${passwordError ? 'border-[#5053B9] focus-visible:ring-[#5053B9]' : ''}`}
+ autoComplete="current-password" // Keep autoComplete as "current-password" for the password field
+                  value={password} // Value for controlled input
+ style={{
+                    borderColor: passwordError ? '#5053B9' : undefined, // Inline style for border color
+                    WebkitBoxShadow: '0 0 0 1000px var(--card) inset',
+                    boxShadow: '0 0 0 1000px var(--card) inset',
+                  }} // Attempt to override browser autofill background
+ autoCapitalize="off" // Disable auto-capitalization
+                  onChange={(e) => { setPassword(e.target.value); setPasswordError(''); }}
                 />
+               
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
@@ -96,7 +148,7 @@ export default function LoginPage() {
             
             <div className="text-sm space-y-2">
               <div className="flex items-center space-x-2">
-                <Checkbox
+ <Checkbox
                   id="remember-me"
                   className="
                     border-primary data-[state=checked]:border-primary
@@ -108,15 +160,18 @@ export default function LoginPage() {
                 />
                 <Label htmlFor="remember-me" className="font-normal text-muted-foreground">Recuérdame</Label>
               </div>
-              <div>
+              <div className="text-sm text-muted-foreground text-left mt-4">
+ ¿Olvidaste tu contraseña?{' '}
                 <Link href="#" className="text-primary hover:underline text-shadow-neon-primary" prefetch={false}>
-                  ¿Olvidaste tu contraseña? Restablecer
+                   Restablecer
                 </Link>
               </div>
             </div>
 
-            <Button type="submit" className="w-full text-lg py-6">Iniciar sesión</Button>
-          </form>
+ {/* Add a line break or margin here to separate the link and button */}
+ <div className="mt-4"></div>
+            
+ <Button type="submit" className="w-full text-lg py-6" >Iniciar sesión</Button>          </form>
 
           <div className="relative my-2">
             <div className="absolute inset-0 flex items-center">
