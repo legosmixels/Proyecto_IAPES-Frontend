@@ -38,6 +38,12 @@ export default function CompleteProfilePage() {
   const [fechaPrueba, setFechaPrueba] = useState('');
   const [materiaAyuda, setMateriaAyuda] = useState('');
 
+  // State for validation errors
+  const [errors, setErrors] = useState({
+    necesitaAyudaMateria: false,
+    materiaAyuda: false,
+    trabajoInstitucion: false,
+  });
   // Assuming supabase client is initialized elsewhere and accessible
 
   // Remove useEffect for checking user and redirecting to root on this page
@@ -55,15 +61,35 @@ export default function CompleteProfilePage() {
   const handleCompleteProfile = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Here you would handle submitting the profile completion data,
-    // possibly updating the user's profile in your backend/database.
-    // For now, we'll just show a success toast and redirect.
-
-    toast({
-      title: 'Perfil completado',
-      description: 'Tu perfil ha sido actualizado exitosamente.',
+    // Reset errors
+    setErrors({
+      necesitaAyudaMateria: false,
+      materiaAyuda: false,
+      trabajoInstitucion: false,
     });
-    router.push('/'); // Redirect to home or dashboard after completion
+
+    let hasErrors = false;
+
+    if (!necesitaAyudaMateria) {
+      setErrors(prev => ({ ...prev, necesitaAyudaMateria: true }));
+      hasErrors = true;
+    } else if (necesitaAyudaMateria === 'si' && !materiaAyuda) {
+      setErrors(prev => ({ ...prev, materiaAyuda: true }));
+      hasErrors = true;
+    }
+
+    if (!trabajoInstitucion) {
+      setErrors(prev => ({ ...prev, trabajoInstitucion: true }));
+      hasErrors = true;
+    }
+
+    if (!hasErrors) {
+      toast({
+        title: 'Perfil completado',
+        description: 'Tu perfil ha sido actualizado exitosamente.',
+      });
+      router.push('/'); // Redirect to home or dashboard after completion
+    }
   };
 
 
@@ -144,6 +170,9 @@ export default function CompleteProfilePage() {
                                 <Label htmlFor="materia-no">No</Label>
                             </div>
                         </RadioGroup>
+                        {errors.necesitaAyudaMateria && (
+                          <p className="text-red-500 text-sm">Por favor, selecciona si necesitas ayuda con una materia.</p>
+                        )}
                         {necesitaAyudaMateria === 'si' && (
  <div className="space-y-2 mt-4">
  <Label htmlFor="materiaAyuda">Materia</Label>
@@ -156,6 +185,9 @@ export default function CompleteProfilePage() {
  <SelectItem value="science">Ciencias</SelectItem>
  {/* Add more options as needed */}
  </SelectContent>
+ {errors.materiaAyuda && (
+ <p className="text-red-500 text-sm">Por favor, selecciona la materia.</p>
+ )}
  </Select>
  </div>
  )}
@@ -174,6 +206,9 @@ export default function CompleteProfilePage() {
                             {/* Add more options as needed */}
                         </SelectContent>
                     </Select>
+                    {errors.trabajoInstitucion && (
+                      <p className="text-red-500 text-sm">Por favor, selecciona una opción para Trabajo o Institución.</p>
+                    )}
                  </div>
 
                  <div className="grid grid-cols-2 gap-4">

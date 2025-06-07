@@ -1,6 +1,6 @@
 "use client"; // Required for useState
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -21,23 +21,23 @@ const GoogleIcon = () => (
 export default function RegisterPage() { 
   const [showPassword, setShowPassword] = useState(false);
  const [nombre, setNombre] = useState('');
+  const [nombreError, setNombreError] = useState(false);
   const [apellido, setApellido] = useState('');
+  const [apellidoError, setApellidoError] = useState(false);
   const [fechaNacimiento, setFechaNacimiento] = useState('');
+  const [fechaNacimientoError, setFechaNacimientoError] = useState(false);
   const [genero, setGenero] = useState('');
-  const [email, setEmail] = useState('');
+  const [generoError, setGeneroError] = useState(false);
+  const [email, setEmail] = useState(''); 
+  const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState<string | null>(null);
-  // Assuming supabase client is initialized elsewhere and accessible
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordStrengthError, setPasswordStrengthError] = useState('');
 
-  // useEffect(() => {
-  //   const checkUser = async () => {
-  //     const { data: { user } } = await supabase.auth.getUser();
-  //     if (user) {
-  //       router.replace('/');
-  //     }
-  //   };
-  //   checkUser();
-  // }, [router, supabase]);
+  // Password strength validation (example criteria: at least 8 characters, includes uppercase, lowercase, number, and special character)
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]\{\}|;:\'"<>,.\/?\\`~])[A-Za-z\d!@#$%^&*()_+\-=\[\]\{\}|;:\'"<>,.\/?\\`~]{8,}$/; // Ensure minimum 8 characters
+
+
 
   const togglePasswordVisibility = () => { 
     setShowPassword(!showPassword);
@@ -90,33 +90,110 @@ export default function RegisterPage() {
             </h2>
           </div>
 
+          <form className="space-y-6" onSubmit={(e) => {
+            e.preventDefault(); // Prevent default form submission
 
-          <form className="space-y-6">
+            // Basic field empty validation
+            const isNombreEmpty = nombre.trim() === '';
+            const isApellidoEmpty = apellido.trim() === '';
+            const isFechaNacimientoEmpty = fechaNacimiento.trim() === '';
+            const isGeneroEmpty = genero.trim() === '';
+            const isEmailEmpty = email.trim() === '';
+            const isPasswordEmpty = password.trim() === '';
+
+            // Email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isEmailValid = emailRegex.test(email);
+
+            // Password strength validation (example criteria: at least 8 characters, includes uppercase, lowercase, number, and special character)
+            const isPasswordStrong = passwordRegex.test(password);
+            let passwordStrengthMessage = '';
+            passwordStrengthMessage = 'La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, un número y un carácter especial.';
+            setNombreError(isNombreEmpty);
+            setApellidoError(isApellidoEmpty);
+            setFechaNacimientoError(isFechaNacimientoEmpty);
+            setGeneroError(isGeneroEmpty);
+            setEmailError(isEmailEmpty || !isEmailValid);
+            setPasswordError(isPasswordEmpty || !isPasswordStrong);
+            setPasswordStrengthError(passwordStrengthMessage);
+
+            if (!isNombreEmpty && !isApellidoEmpty && !isFechaNacimientoEmpty && !isGeneroEmpty && !isEmailEmpty && !isPasswordEmpty && isEmailValid && isPasswordStrong) {
+              // Here you would typically handle form submission, e.g., send data to an API
+              window.location.href = "/complete-profile"; // Redirect after successful "submission"
+            }
+          }}>
  {/* Nombre */}
             <div className="space-y-2">
               <Label htmlFor="nombre">Nombre</Label>
-              <Input id="nombre" type="text" placeholder="Ingresa tu nombre" required className="bg-background/70" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+              <Input 
+                id="nombre" 
+                type="text" 
+                placeholder="Ingresa tu nombre" 
+                className={`
+ ${nombreError ? 'border-[#5053B9]' : ''}
+ autofill:!bg-background/70
+ autofill:!text-foreground
+ autofill:!border-border
+ autofill:!shadow-none
+ `}
+                value={nombre} 
+                onChange={(e) => {setNombre(e.target.value); setNombreError(false);}}
+                onBlur={() => setNombreError(nombre.trim() === '')}
+ autoComplete="off" />
             </div>
 
             {/* Apellido */}
             <div className="space-y-2">
               <Label htmlFor="apellido">Apellido</Label>
-              <Input id="apellido" type="text" placeholder="Ingresa tu apellido" required className="bg-background/70" value={apellido} onChange={(e) => setApellido(e.target.value)} />
+              <Input 
+                id="apellido" 
+                type="text" 
+                placeholder="Ingresa tu apellido" 
+                className={`
+ ${apellidoError ? 'border-[#5053B9]' : ''}
+ autofill:!bg-background/70
+ autofill:!text-foreground
+ autofill:!border-border
+ autofill:!shadow-none
+ `}
+                value={apellido} 
+                onChange={(e) => {setApellido(e.target.value); setApellidoError(false);}} 
+                onBlur={() => setApellidoError(apellido.trim() === '')}
+ autoComplete="off" />
             </div>
 
             {/* Fecha de nacimiento y Género en la misma fila */}
             <div className="grid grid-cols-2 gap-4">
               {/* Fecha de nacimiento */}
               <div className="space-y-2">
-                <Label htmlFor="fechaNacimiento">Fecha de nacimiento</Label>
-                <Input id="fechaNacimiento" type="date" placeholder="dd/mm/aaaa" required className="bg-background/70" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)} />
+                <Label htmlFor="fechaNacimiento">Fecha de nacimiento</Label> {/* Moved label outside */}
+                 <Input 
+                  id="fechaNacimiento" 
+                  type="date" 
+                  placeholder="dd/mm/aaaa"
+                  className={`
+ ${fechaNacimientoError ? 'border-[#5053B9]' : ''}
+ autofill:!bg-background/70
+ autofill:!text-foreground
+ autofill:!border-border
+ autofill:!shadow-none
+ `}
+                  value={fechaNacimiento} 
+                  onChange={(e) => {setFechaNacimiento(e.target.value); setFechaNacimientoError(false);}} 
+                  onBlur={() => setFechaNacimientoError(fechaNacimiento.trim() === '')}
+ autoComplete="off" />
               </div>
 
-              {/* Género */}
               <div className="space-y-2">
                 <Label htmlFor="genero">Género</Label>
-                <Select value={genero} onValueChange={setGenero}>
-                  <SelectTrigger id="genero" className="bg-background/70">
+                <Select value={genero} onValueChange={(value) => {setGenero(value); setGeneroError(false);}}>
+                  <SelectTrigger 
+                    id="genero"
+ className={`${generoError ? 'border-[#5053B9]' : ''}`}
+                    onBlur={() => setGeneroError(genero.trim() === '')}
+
+                  >
+
                     <SelectValue placeholder="Selecciona" />
                   </SelectTrigger>
                   <SelectContent>
@@ -124,43 +201,71 @@ export default function RegisterPage() {
                     <SelectItem value="femenino">Femenino</SelectItem>
                     <SelectItem value="otro">Otro</SelectItem>
                   </SelectContent>
-                </Select>
+                </Select> 
               </div>
             </div>
-
+            
             {/* Correo electrónico */}
             <div className="space-y-2">
               <Label htmlFor="email">Correo electrónico</Label>
-              <Input id="email" type="email" placeholder="Ingresa tu correo electrónico" required className="bg-background/70" value={email} onChange={(e) => setEmail(e.target.value)} />
+             <Input 
+                id="email" 
+
+                type="text" // Changed to text to allow partial input for validation
+                placeholder="Ingresa tu correo electrónico"
+                className={`
+ ${emailError ? 'border-[#5053B9]' : ''}
+ autofill:!bg-background/70
+ autofill:!text-foreground
+ autofill:!border-border
+ autofill:!shadow-none
+ `}
+                value={email} 
+                onChange={(e) => {setEmail(e.target.value); setEmailError(false);}}
+                onBlur={() => setEmailError(email.trim() === '')}
+ autoComplete="off" />
+             {emailError && (
+ <p className="text-xs mt-1" style={{ color: '#5053B9' }}>Por favor, ingrese un correo válido</p>
+             )}
             </div>
+
             <div className="space-y-2">
               <Label htmlFor="password">Contraseña</Label>
               <div className="relative">
                 <Input
-                  id="password"
+ id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Ingresa tu contraseña"
-                  required
- value={password} onChange={(e) => setPassword(e.target.value)}
-                  className="bg-background/70 pr-10" // Added pr-10 for eye icon spacing
-                />
+                  placeholder="Ingresa tu contraseña" 
+ value={password}
+ className={`
+ pr-10 w-full 
+ ${passwordError ? 'border-[#5053B9]' : ''}
+ `} // Removed autofill styles as autocomplete="new-password" is used
+ onChange={(e) => {setPassword(e.target.value); setPasswordError(false);}}
+ onBlur={() => setPasswordError(password.trim() === '' || !passwordRegex.test(password))}
+ autoComplete="new-password" // Hint to the browser not to use autofill
+ />
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted-foreground hover:text-primary text-shadow-neon-primary"
-                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+ className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted-foreground hover:text-primary" // Simplified class name
+ aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"} // Added aria-label for accessibility
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                </button>
+ </button>
               </div>
+              {passwordError && passwordStrengthError && (
+ <p className="text-xs mt-1" style={{ color: '#5053B9' }}>{passwordStrengthError}</p>
+ )}
             </div>
 
  {/* Add vertical space */}
  <div className="h-4" /> 
  
- <Link href="/complete-profile" passHref>
- <Button type="button" className="w-full text-lg py-6">Registrarse</Button>
- </Link>
+
+ <Button type="submit" className="w-full text-lg py-6">Registrarse</Button>
+
+
           </form>
 
            <p className="text-center text-sm text-muted-foreground mt-4">

@@ -88,8 +88,20 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     /* Subtle dot pattern for background decoration */
     background-image: radial-gradient(hsl(var(--muted) / 0.3) 0.75px, transparent 0.75px); /* Adjusted opacity and size */
-    background-size: 15px 15px; /* Adjusted size */
   }
+
+  /* Prevent autofilled inputs from changing background color */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px var(--input) inset !important;
+    -webkit-text-fill-color: var(--foreground) !important;
+    caret-color: var(--foreground) !important;
+  }
+}
+
+html {
+  --satori-font-family: 'Inter', sans-serif;
 }
 
 @layer utilities {
