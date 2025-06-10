@@ -30,77 +30,91 @@ interface Subject {
 const BackgroundCard: React.FC<{
   subTopic: SubTopic;
   subIndex: number;
-  isActive: boolean;
   index: number;
+  isActive: boolean;
   onClick: () => void;
 }> = ({ subTopic, subIndex, isActive, index, onClick }) => {
-  const zIndex = isActive ? 30 : 10 - subIndex;
-  const baseTranslateX = index % 2 === 0 ? subIndex * 15 : -subIndex * 15;
-  const expandTranslateX = index % 2 === 0 ? 500 : -500;
+  const zIndex = isActive ? 30 : 10 - subIndex; // Z-index for stacking and active card
+ const expandTranslateX = index % 2 === 0 ? 500 : -500; // Expansion direction
 
   return (
-    <div
-      className={`absolute top-0 left-0 w-full h-full border border-primary/30 bg-white rounded-lg transition-all duration-300 cursor-pointer ${isActive ? 'shadow-2xl bg-gray-50' : 'hover:shadow-lg hover:bg-gray-100'}`}
-      style={{
-        zIndex,
-        transform: isActive
-          ? `translateX(${expandTranslateX}px) scale(1)`
-          : `translate(${baseTranslateX}px, ${subIndex * 10}px)`,
-        opacity: isActive ? 1 : 0.9 - subIndex * 0.1,
-      }}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
-      }}
-    >
-      <div className="pt-8 pb-8 pl-8 pr-16 flex flex-col gap-1.5 w-[490px] h-full max-h-[270px]">
-        <h3 className="text-xl font-semibold dark:text-black">
-          {subTopic.title}
-        </h3>
-        <p className={`text-base font-medium ${isActive ? 'text-gray-800' : 'text-gray-500'} line-clamp-2`}>
-          {subTopic.subtitle}
-        </p>
-        <p className="text-sm text-black line-clamp-4">
-          {subTopic.content}
-        </p>
-        <button
-          className="mt-auto w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-          onClick={(e) => {
-            e.stopPropagation(); // Prevent the card's onClick from triggering
-            console.log(`Button clicked for ${subTopic.title}`);
-          }}
-        >
-          Learn More
-        </button>
-      </div>
-    </div>
+    isActive ? ( // Correctly starts the conditional rendering
+      // Content of the expanded card (only visible when active)
+      <div
+        className={`absolute top-0 rounded-lg transition-all duration-300 cursor-pointer shadow-2xl bg-gray-50 dark:bg-[#2A3B5C] w-full h-full`}
+        style={{
+          zIndex,
+          transform: `translateX(${expandTranslateX}px) scale(1)`, // Expand away from the main card
+       }}
+       onClick={(e) => {
+         e.stopPropagation();
+         onClick();
+       }}
+     >
+       <div className="pt-8 pb-8 pl-8 pr-16 flex flex-col gap-1.5 w-[490px] h-full max-h-[270px]">
+         {/* Content when active */}
+         <h3 className="text-xl font-semibold dark:text-white">{subTopic.title}</h3>
+         <p className="text-base font-medium text-gray-800 line-clamp-2 dark:text-gray-300">{subTopic.subtitle}</p>
+         <p className="text-sm text-black line-clamp-4 overflow-hidden dark:text-gray-400">{subTopic.content}</p>
+         <button
+           className="mt-auto w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+           onClick={(e) => {
+             e.stopPropagation(); // Prevent the card's onClick from triggering
+             console.log(`Button clicked for ${subTopic.title}`);
+           }}
+         >
+           Learn More
+         </button>
+       </div>
+     </div>
+   ) : ( // Correctly separates the conditional branches
+     // Tab view when not active
+      <div
+        className={`absolute top-0 rounded-lg transition-all duration-300 cursor-pointer dark:bg-[#1A2A4A] hover:shadow-lg dark:hover:bg-[#2A3B5C] flex items-center justify-center w-[40px] h-[60px]`}
+        style={{
+          width: '40px', // Narrow width for tabs (can be adjusted)
+          height: '60px', // Height for tabs
+          zIndex: 10 - subIndex, // Use zIndex for stacking
+         transform: index % 2 === 0 ? `translate(450px, ${subIndex * 55}px)` : `translate(-40px, ${subIndex * 55}px)`, // Adjusted to stick to the left
+        }}
+        onClick={(e) => { 
+          e.stopPropagation();
+          onClick();
+        }}
+      >
+          <span className="text-xl font-bold dark:text-white">
+            {subTopic.title.charAt(0)}
+          </span>
+        </div>
+    )
   );
 };
 
 // Card component
 const Card: React.FC<CardProps> = ({ className, children, style, onClick }) => (
   <div
-    className={`bg-white shadow-md rounded-lg border border-gray-200 ${className}`}
+    className={`bg-white shadow-md rounded-lg border border-gray-200 dark:bg-[#1A2A4A] dark:border-gray-700 ${className}`}
     style={style}
     onClick={onClick}
   >
     {children}
   </div>
 );
-
 // CardHeader component
 const CardHeader: React.FC<CardProps> = ({ children }) => (
-  <div className="px-6 py-4 border-b border-gray-200">{children}</div>
+  <div className="px-6 py-4 border-b border-gray-200 dark:border-blue-600">{children}</div>
 );
-
 // CardTitle component
 const CardTitle: React.FC<CardProps> = ({ children }) => (
-  <h2 className="text-xl font-semibold dark:text-black">{children}</h2>
+  <h2 className="text-xl font-semibold dark:text-white">{children}</h2>
 );
-
 // CardContent component
 const CardContent: React.FC<CardProps> = ({ children }) => (
-  <div className="px-6 py-4 flex flex-col gap-4 overflow-y-auto dark:text-black">{children}</div>
+  <div 
+    className="px-6 py-4 flex flex-col gap-4 overflow-y-auto dark:text-gray-300"
+  >
+    {children}
+  </div>
 );
 
 // Progress component
@@ -117,7 +131,7 @@ const Progress: React.FC<ProgressProps> = ({ value, className }) => (
 const subjects: Subject[] = [
   {
     title: 'Matemática',
-    description: 'Estudia los números, el espacio, la cantidad, la estructura y el cambio.',
+    description: 'Evalúa las competencias<br>para enfrentarse a situaciones que<br>requieran el uso de herramientas matemáticas de<br>alguna de estas cuatro categorías:<br>- Álgebra<br>- Geometría<br>- Cálculo<br>- Estadística.',
     subTopics: [
       { 
         title: 'Álgebra', 
@@ -225,27 +239,6 @@ const subjects: Subject[] = [
       },
     ],
   },
-  {
-    title: 'Ciencias',
-    description: 'Exploración del mundo natural a través de observación y experimentación.',
-    subTopics: [
-      { 
-        title: 'Biología', 
-        subtitle: 'Seres vivos', 
-        content: 'Estudia los seres vivos, sus características, funciones y procesos biológicos. Explorarás temas como la célula, la genética, la evolución y los ecosistemas, con un enfoque en cómo los organismos interactúan y se adaptan.' 
-      },
-      { 
-        title: 'Ecología', 
-        subtitle: 'Interacciones ambientales', 
-        content: 'Analiza las interacciones entre organismos y su entorno natural, desde ecosistemas locales hasta globales. Aprenderás sobre cadenas alimenticias, ciclos biogeoquímicos y la conservación de la biodiversidad frente a los desafíos ambientales.' 
-      },
-      { 
-        title: 'Geología', 
-        subtitle: 'Estructura de la Tierra', 
-        content: 'Explora la estructura, composición y procesos que han dado forma a la Tierra a lo largo del tiempo. Estudiarás temas como las placas tectónicas, los minerales, los fósiles y los fenómenos geológicos como terremotos y volcanes.' 
-      },
-    ],
-  },
 ];
 
 // SubjectsPage component
@@ -260,8 +253,8 @@ const SubjectsPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-3xl font-bold mb-8 text-center">Explora nuestros Cursos</h1>
+    <div className="container mx-auto px-4 py-6 dark:bg-[#0A192F]">
+      <h1 className="text-3xl font-bold mb-8 text-center dark:text-white">Explora nuestros Cursos</h1>
       <div className="flex flex-col items-center gap-12">
         {subjects.map((subject, index) => {
           const subjectKey = `${subject.title}-${index}`; // Unique key for each subject
@@ -288,13 +281,13 @@ const SubjectsPage: React.FC = () => {
               {/* Main Card */}
               <Card
                 className="absolute top-0 left-0 w-full h-full cursor-pointer transition-all duration-300 hover:shadow-lg"
-                style={{ zIndex: 25, transform: 'translateX(0)' }}
+                style={{ zIndex: 25 }} // Ensure main card is below tabs when not expanded
               >
                 <CardHeader>
                   <CardTitle>{subject.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>{subject.description}</p>
+                  <p dangerouslySetInnerHTML={{ __html: subject.description }}></p>
                   <Progress value={Math.random() * 100} className="w-full" />
                 </CardContent>
               </Card>
