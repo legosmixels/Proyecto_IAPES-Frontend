@@ -131,7 +131,7 @@ const Progress: React.FC<ProgressProps> = ({ value, className }) => (
 const subjects: Subject[] = [
   {
     title: 'Matemática',
-    description: 'Evalúa las competencias<br>para enfrentarse a situaciones que<br>requieran el uso de herramientas matemáticas de<br>alguna de estas cuatro categorías:<br>- Álgebra<br>- Geometría<br>- Cálculo<br>- Estadística.',
+    description: 'Evalúa las competencias para enfrentarse a situaciones que requieran el uso de herramientas matemáticas de alguna de estas cuatrocategorías:<br />- Álgebra<br />- Geometría<br />- Cálculo<br />- Estadística.',
     subTopics: [
       { 
         title: 'Álgebra', 
@@ -157,7 +157,7 @@ const subjects: Subject[] = [
   },
   {
     title: 'Ciencias',
-    description: 'Exploración del mundo natural a través de observación y experimentación.',
+    description: 'Evalúa la capacidad para comprender y usar nociones, conceptos y teorías de las ciencias naturales en la solución de problemas, valorando críticamente el conocimiento y sus consecuencias en la sociedad y en el ambiente. Las preguntas de esta prueba evalúan cuatro componentes:<br />- Quimico<br />- Biologico<br />- Fisico<br />- Ciencia, Tecnología y Sociedad',
     subTopics: [
       { 
         title: 'Física', 
@@ -170,7 +170,7 @@ const subjects: Subject[] = [
         content: 'Explora la composición, estructura y propiedades de la materia, así como las reacciones químicas. Aprenderás sobre elementos, compuestos, enlaces químicos y cómo estas interacciones afectan el mundo que nos rodea.' 
       },
       { 
-        title: 'Astronomía', 
+        title: 'Biologia', 
         subtitle: 'Cuerpos celestes', 
         content: 'Se enfoca en la exploración de los cuerpos celestes como estrellas, planetas y galaxias. Estudiarás el movimiento de los astros, la formación del universo y los fenómenos cósmicos, como los agujeros negros y las supernovas.' 
       },
@@ -178,28 +178,28 @@ const subjects: Subject[] = [
   },
   {
     title: 'Lectura Crítica',
-    description: 'Habilidad para analizar, evaluar e interpretar textos.',
+    description: 'evalúa la capacidad para comprender, interpretar y evaluar textos que pueden encontrarse en la vida cotidiana y en ámbitos académicos no especializados. Las preguntas de esta prueba evalúan tres competencias:<br />- Identificar y entender los contenidos locales<br />- Comprender cómo se articulan las partes para dar un sentido global<br />- Reflexionar a partir de un texto y evaluar su contenido',
     subTopics: [
       { 
-        title: 'Análisis', 
+        title: 'Locales', 
         subtitle: 'Comprensión lectora', 
         content: 'Desarrolla técnicas para comprender textos complejos, identificar ideas principales y secundarias, y analizar la estructura del discurso. Practicarás con diferentes géneros literarios y textos informativos para mejorar tu comprensión.' 
       },
       { 
-        title: 'Interpretación', 
+        title: 'Globales', 
         subtitle: 'Significados de textos', 
         content: 'Te enseña a extraer significados implícitos y explícitos de los textos, analizando el contexto, el tono y las intenciones del autor. Aprenderás a conectar ideas y a formular hipótesis basadas en la información presentada.' 
       },
       { 
-        title: 'Evaluación', 
+        title: 'Reflexion y Evaluación', 
         subtitle: 'Validez de argumentos', 
         content: 'Te permite juzgar la validez y consistencia de los argumentos presentados en un texto. Aprenderás a identificar falacias, evaluar evidencias y determinar la solidez de las conclusiones en debates y ensayos.' 
       },
     ],
   },
   {
-    title: 'Sociales',
-    description: 'Estudio de las sociedades humanas y sus relaciones.',
+    title: 'Sociales y Ciudadanas',
+    description: 'Evalua las herramientas del pensamiento para comprender interconexiones entre eventos históricos y fenómenos sociales, identificar cambios y permanencias en el desarrollo histórico, formular posibles conclusiones a partir de evidencias, examinar consecuencias, analizar las ventajas y desventajas de la aplicación de teorías sociales, y comparar distintas interpretaciones sobre un mismo evento o fenómeno mediante 3 componentes: <br />- Pensamiento social <br />- Interpretación y análisis de perspectivas <br />- Pensamiento reflexivo y sistémico',
     subTopics: [
       { 
         title: 'Historia', 
