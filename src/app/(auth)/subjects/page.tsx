@@ -75,7 +75,9 @@ const BackgroundCard: React.FC<{
           width: '40px', // Narrow width for tabs (can be adjusted)
           height: '60px', // Height for tabs
           zIndex: 10 - subIndex, // Use zIndex for stacking
-         transform: index % 2 === 0 ? `translate(450px, ${subIndex * 55}px)` : `translate(-40px, ${subIndex * 55}px)`, // Adjusted to stick to the left
+          transform: index % 2 === 0
+ ? `translate(458px, ${subIndex * 55}px)` // For left modules (even index): move to the right of the card (max-w-md + margin)
+ : `translate(-50px, ${subIndex * 55}px)`, // For right modules (odd index): keep to the left of the card
         }}
         onClick={(e) => { 
           e.stopPropagation();
@@ -131,7 +133,7 @@ const Progress: React.FC<ProgressProps> = ({ value, className }) => (
 const subjects: Subject[] = [
   {
     title: 'Matemática',
-    description: 'Evalúa las competencias para enfrentarse a situaciones que requieran el uso de herramientas matemáticas de alguna de estas cuatrocategorías:<br />- Álgebra<br />- Geometría<br />- Cálculo<br />- Estadística.',
+    description: 'Evalúa las competencias para enfrentarse a situaciones que requieran el uso de herramientas matemáticas de alguna de estas cuatro categorías:<br />- Álgebra<br />- Geometría<br />- Cálculo<br />- Estadística.',
     subTopics: [
       { 
         title: 'Álgebra', 
@@ -160,17 +162,22 @@ const subjects: Subject[] = [
     description: 'Evalúa la capacidad para comprender y usar nociones, conceptos y teorías de las ciencias naturales en la solución de problemas, valorando críticamente el conocimiento y sus consecuencias en la sociedad y en el ambiente. Las preguntas de esta prueba evalúan cuatro componentes:<br />- Quimico<br />- Biologico<br />- Fisico<br />- Ciencia, Tecnología y Sociedad',
     subTopics: [
       { 
-        title: 'Física', 
-        subtitle: 'Movimiento y energía', 
-        content: 'Aborda los conceptos fundamentales del movimiento, la energía y las fuerzas en el universo. Estudiarás temas como la mecánica, la termodinámica y el electromagnetismo, aplicándolos a fenómenos cotidianos y tecnológicos.' 
-      },
-      { 
         title: 'Química', 
         subtitle: 'Composición de la materia', 
         content: 'Explora la composición, estructura y propiedades de la materia, así como las reacciones químicas. Aprenderás sobre elementos, compuestos, enlaces químicos y cómo estas interacciones afectan el mundo que nos rodea.' 
       },
       { 
+        title: 'Física', 
+        subtitle: 'Movimiento y energía', 
+        content: 'Aborda los conceptos fundamentales del movimiento, la energía y las fuerzas en el universo. Estudiarás temas como la mecánica, la termodinámica y el electromagnetismo, aplicándolos a fenómenos cotidianos y tecnológicos.' 
+      },
+      { 
         title: 'Biologia', 
+        subtitle: 'Cuerpos celestes', 
+        content: 'Se enfoca en la exploración de los cuerpos celestes como estrellas, planetas y galaxias. Estudiarás el movimiento de los astros, la formación del universo y los fenómenos cósmicos, como los agujeros negros y las supernovas.' 
+      },
+      { 
+        title: 'Ciencia, Tecnología y Sociedad', 
         subtitle: 'Cuerpos celestes', 
         content: 'Se enfoca en la exploración de los cuerpos celestes como estrellas, planetas y galaxias. Estudiarás el movimiento de los astros, la formación del universo y los fenómenos cósmicos, como los agujeros negros y las supernovas.' 
       },
@@ -199,20 +206,20 @@ const subjects: Subject[] = [
   },
   {
     title: 'Sociales y Ciudadanas',
-    description: 'Evalua las herramientas del pensamiento para comprender interconexiones entre eventos históricos y fenómenos sociales, identificar cambios y permanencias en el desarrollo histórico, formular posibles conclusiones a partir de evidencias, examinar consecuencias, analizar las ventajas y desventajas de la aplicación de teorías sociales, y comparar distintas interpretaciones sobre un mismo evento o fenómeno mediante 3 componentes: <br />- Pensamiento social <br />- Interpretación y análisis de perspectivas <br />- Pensamiento reflexivo y sistémico',
+    description: 'Evalua las herramientas del pensamiento para comprender interconexiones entre eventos históricos y fenómenos sociales, identificar cambios y permanencias en el desarrollo histórico, formular posibles conclusiones a partir de evidencias, examinar consecuencias, analizar las ventajas y desventajas de la aplicación de teorías sociales, mediante 3 componentes: <br />- Pensamiento social <br />- Interpretación y análisis de perspectivas <br />- Pensamiento reflexivo y sistémico',
     subTopics: [
       { 
-        title: 'Historia', 
-        subtitle: 'Culturas pasadas', 
+        title: 'Social', 
+        subtitle: 'lol', 
         content: 'Analiza los eventos y culturas del pasado para entender el desarrollo de las sociedades humanas. Estudiarás períodos clave como la antigüedad, la edad media y la modernidad, explorando su impacto en el mundo actual.' 
       },
       { 
-        title: 'Geografía', 
-        subtitle: 'Paisajes y poblaciones', 
+        title: 'Interpretación y análisis de perspectivas', 
+        subtitle: 'lol', 
         content: 'Explora los paisajes físicos y las poblaciones humanas, analizando cómo interactúan entre sí. Aprenderás sobre climas, ecosistemas, migraciones y urbanización, con un enfoque en los desafíos globales actuales.' 
       },
       { 
-        title: 'Economía', 
+        title: 'Pensamiento reflexivo y sistémico', 
         subtitle: 'Recursos y mercados', 
         content: 'Estudia la gestión de recursos y el funcionamiento de los mercados en las sociedades. Aborda temas como la oferta y la demanda, la producción, el consumo y las políticas económicas que influyen en el desarrollo global.' 
       },
@@ -220,7 +227,7 @@ const subjects: Subject[] = [
   },
   {
     title: 'Inglés',
-    description: 'Dominio del idioma inglés en sus diferentes habilidades.',
+    description: 'Evalua las habilidades comunicativas en materia de lectura y del uso de la lengua. Para ello, cada una de las siete partes que componen la prueba de Inglés evalúa una habilidad específica de la lengua inglesa divida en los siguientes 3 componentes: <br />- Gramática<br />- Vocabulario<br />- Lexico-gramatical (Comprension de Textos)',
     subTopics: [
       { 
         title: 'Gramática', 
@@ -233,7 +240,7 @@ const subjects: Subject[] = [
         content: 'Amplía tu repertorio de palabras y significados en inglés para mejorar tu comunicación. Aprenderás términos comunes y especializados, así como expresiones idiomáticas, a través de ejercicios prácticos y lecturas.' 
       },
       { 
-        title: 'Conversación', 
+        title: 'Lexico-Gramatico', 
         subtitle: 'Habilidades orales', 
         content: 'Desarrolla tus habilidades orales en inglés para comunicarte con fluidez y confianza. Practicarás la pronunciación, la entonación y el diálogo en situaciones cotidianas, como saludos, viajes y debates.' 
       },
@@ -253,49 +260,67 @@ const SubjectsPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 dark:bg-[#0A192F]">
+    <div className="container mx-auto px-4 py-6"> {/* Usamos un único div raíz con clases de contenedor */}
       <h1 className="text-3xl font-bold mb-8 text-center dark:text-white">Explora nuestros Cursos</h1>
-      <div className="flex flex-col items-center gap-12">
-        {subjects.map((subject, index) => {
-          const subjectKey = `${subject.title}-${index}`; // Unique key for each subject
-          const activeSubTopic = activeSubTopics[subjectKey];
+      <div className="flex flex-col items-center gap-24 md:gap-12"> {/* Increased gap for visual separation */}
+        <div className="w-full px-4"> {/* Added div for horizontal padding */}
+          {subjects.map((subject, index) => { // Ensured this div is flex col to enable self-start/self-end for children
+            const subjectKey = `${subject.title}-${index}`;
+            const activeSubTopic = activeSubTopics[subjectKey];
 
-          return (
-            <div
-              key={subjectKey}
-              className={`relative w-full max-w-md aspect-square ${
-                index % 2 === 0 ? 'self-start' : 'self-end'
-              } overflow-visible`}
-            >
-              {/* Subtopic Cards */}
-              {subject.subTopics.map((subTopic, subIndex) => (
-                <BackgroundCard
-                  key={subTopic.title}
-                  subTopic={subTopic}
-                  subIndex={subIndex}
-                  isActive={activeSubTopic === subTopic.title}
-                  index={index}
-                  onClick={() => handleSubTopicClick(subjectKey, subTopic.title)}
-                />
-              ))}
-              {/* Main Card */}
-              <Card
-                className="absolute top-0 left-0 w-full h-full cursor-pointer transition-all duration-300 hover:shadow-lg"
-                style={{ zIndex: 25 }} // Ensure main card is below tabs when not expanded
+            return (
+              <div
+                key={subjectKey} // Key must be on the outer element of the map
+                className={`relative w-full max-w-md aspect-square ${![0, 2, 4].includes(index) ? 'ml-auto' : ''} overflow-visible mb-12 md:mb-0`} // Apply ml-auto if index is not in the left-aligned group
               >
-                <CardHeader>
-                  <CardTitle>{subject.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p dangerouslySetInnerHTML={{ __html: subject.description }}></p>
-                  <Progress value={Math.random() * 100} className="w-full" />
-                </CardContent>
-              </Card>
-            </div>
-          );
-        })}
+                {subject.subTopics.map((subTopic, subIndex) => (
+                  <BackgroundCard
+                    key={subTopic.title}
+                    subTopic={subTopic}
+                    subIndex={subIndex}
+                    isActive={activeSubTopic === subTopic.title}
+                    index={index}
+                    onClick={() => handleSubTopicClick(subjectKey, subTopic.title)}
+                  />
+                ))}
+                <Card
+                  className="absolute top-0 left-0 w-full h-full cursor-pointer transition-all duration-300 hover:shadow-lg"
+                  style={{ zIndex: 25 }}
+                >
+                  <CardHeader>
+                    <CardTitle>{subject.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p dangerouslySetInnerHTML={{ __html: subject.description }}></p>
+                    <div className="flex justify-between items-center mt-auto">
+                      <button
+                        className="w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors mr-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(`Saber más clicked for ${subject.title}`);
+                        }}
+                      >
+                        Saber más
+                      </button>
+                      <button
+                        className="w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors" // Eliminamos 'ml-auto' si estaba aquí
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(`Evaluar clicked for ${subject.title}`);
+                        }}
+                      >
+                        Evaluar
+                      </button>
+                    </div>
+                    <Progress value={Math.random() * 100} className="w-full" />
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })} {/* Cierre del mapeo de subjects */}
+        </div>
       </div>
-    </div>
+    </div> // Cierre del div raíz
   );
 };
 

@@ -77,6 +77,38 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
+  /* Removed .subjects-background rule from here to apply only when .dark class is present */
+}
+
+.dark .subjects-background {
+  background: linear-gradient(to bottom, #121526, rgba(163, 44, 196, 0.3)); /* Degradado en modo oscuro */
+  min-height: 100vh; /* Asegura que cubra toda la altura */
+  width: 100%; /* Asegura que cubra todo el ancho */
+  flex-grow: 1; /* Asegura que ocupe el espacio en flex containers */
+  display: block; /* Asegura comportamiento de bloque */
+  position: absolute; /* Cambiamos a absolute */
+  top: 0;            /* Anclar al borde superior de la ventana */
+  left: 0;            /* Extender desde el borde izquierdo */
+  right: 0;           /* Extender hasta el borde derecho */
+  z-index: -1;        /* Opcional: Asegurar que el fondo esté detrás del contenido */
+}
+
+/* Add CSS rules to force module alignment based on their position in the flex container */
+/* Modules at odd positions (1st, 3rd, etc.) align to the start (left in flex-col) */
+.relative.w-full.max-w-md.aspect-square:nth-child(odd) {
+  align-self: flex-start !important;
+}
+/* Modules at even positions (2nd, 4th, etc.) align to the end (right in flex-col) */
+.relative.w-full.max-w-md.aspect-square:nth-child(even) {
+  align-self: flex-end !important;
+}
+/* Rule to target the parent div and remove its horizontal padding/margin in dark mode for the subjects page */
+.dark .flex.flex-col.items-center.gap-12:has(.subjects-page-container) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 @layer base {
