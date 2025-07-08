@@ -51,26 +51,46 @@ const BackgroundCard: React.FC<{
          onClick();
        }}
      >
-       <div className="pt-8 pb-8 pl-8 pr-16 flex flex-col gap-1.5 w-[490px] h-full max-h-[270px]">
+       <div className="pt-8 pb-8 pl-8 pr-16 flex flex-col gap-8 w-[490px] h-full max-h-[270px]">
          {/* Content when active */}
          <h3 className="text-xl font-semibold dark:text-white">{subTopic.title}</h3>
-         <p className="text-base font-medium text-gray-800 line-clamp-2 dark:text-gray-300">{subTopic.subtitle}</p>
-         <p className="text-sm text-black line-clamp-4 overflow-hidden dark:text-gray-400">{subTopic.content}</p>
-         <button
-           className="mt-auto w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-           onClick={(e) => {
-             e.stopPropagation(); // Prevent the card's onClick from triggering
-             console.log(`Button clicked for ${subTopic.title}`);
-           }}
-         >
-           Learn More
-         </button>
+          {/* Eliminamos la línea del subtitulo anterior: <p className="text-base font-medium text-gray-800 line-clamp-2 dark:text-gray-300">{subTopic.subtitle}</p> */}
+          {/* Structure for subtopic details with clickable values, each on its own line */}
+          <p className="text-base font-medium text-gray-800 dark:text-gray-300">Ultimo tema: <a href="#" className="underline text-blue-600 dark:text-blue-400">[Aquí iría el valor del último tema]</a> {/* Hacemos clicable */}</p>
+ <p className="text-base font-medium text-gray-800 dark:text-gray-300">Recomendado: <a href="#" className="underline text-blue-600 dark:text-blue-400">[Aquí iría el valor del recomendado]</a> {/* Hacemos clicable */}</p>
+ <p className="text-base font-medium text-gray-800 dark:text-gray-300">
+            repasar: <a href="#" className="underline text-blue-600 dark:text-blue-400">[Aquí iría el valor a repasar]</a> {/* Hacemos clicable */}
+          </p>
+
+          {/* Eliminamos la línea del content anterior: <p className="text-sm text-black line-clamp-4 overflow-hidden dark:text-gray-400">{subTopic.content}</p> */}
+
+         <div className="flex items-center justify-between">
+ <button
+ className="w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+ onClick={(e) => {
+ e.stopPropagation();
+ console.log(`Saber más clicked for ${subject.title}`);
+ }}
+ >
+ Saber más
+ </button>
+ <button
+ className="w-fit px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+ onClick={(e) => {
+ e.stopPropagation();
+ console.log(`Evaluar clicked for ${subject.title}`);
+ }}
+ >
+ Evaluar
+ </button>
+ </div>
+          <Progress value={Math.random() * 100} className="mt-4 w-full" /> {/* Add Progress component here */}
        </div>
      </div>
    ) : ( // Correctly separates the conditional branches
      // Tab view when not active
       <div
-        className={`absolute top-0 rounded-lg transition-all duration-300 cursor-pointer dark:bg-[#1A2A4A] hover:shadow-lg dark:hover:bg-[#2A3B5C] flex items-center justify-center w-[40px] h-[60px]`}
+        className={`absolute top-0 rounded-lg transition-all duration-300 cursor-pointer dark:bg-[#1A2A4A] hover:shadow-lg dark:hover:bg-[#2A3B5C] flex items-center justify-center w-[40px] h-[60px] bg-gray-100 shadow`}
         style={{
           width: '40px', // Narrow width for tabs (can be adjusted)
           height: '60px', // Height for tabs
@@ -84,7 +104,7 @@ const BackgroundCard: React.FC<{
           onClick();
         }}
       >
-          <span className="text-xl font-bold dark:text-white">
+          <span className="text-xl font-bold dark:text-white text-gray-800">
             {subTopic.title.charAt(0)}
           </span>
         </div>
@@ -271,7 +291,7 @@ const SubjectsPage: React.FC = () => {
             return (
               <div
                 key={subjectKey} // Key must be on the outer element of the map
-                className={`relative w-full max-w-md aspect-square ${![0, 2, 4].includes(index) ? 'ml-auto' : ''} overflow-visible mb-12 md:mb-0`} // Apply ml-auto if index is not in the left-aligned group
+                className={`relative w-full max-w-md aspect-square ${![0, 2, 4].includes(index) ? 'ml-auto' : ''} overflow-visible mb-24`} // Apply ml-auto if index is not in the left-aligned group
               >
                 {subject.subTopics.map((subTopic, subIndex) => (
                   <BackgroundCard
